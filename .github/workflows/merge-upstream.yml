@@ -25,3 +25,13 @@ jobs:
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge master branch into travis-build for triggering CI.
+        run: |
+          git branch --all
+          git config --list
+          git checkout travis-build
+          git merge --no-ff origin/master
+          git push origin travis-build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
