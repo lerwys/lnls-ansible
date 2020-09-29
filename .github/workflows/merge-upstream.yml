@@ -14,6 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup git name/email.
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Merge upstream branch into local.
         run: |
           git remote add -f upstream "https://github.com/lnls-sirius/lnls-ansible.git"
