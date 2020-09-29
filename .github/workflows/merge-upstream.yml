@@ -1,0 +1,25 @@
+name: Merge Upstream
+on:
+  schedule:
+    # scheduled for every 10 minutes
+    - cron: '*/10 * * * *'
+
+jobs:
+  merge-upstream:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Merge upstream branch into local.
+        run: |
+          git remote add -f upstream "https://github.com/lnls-sirius/lnls-ansible.git"
+          git remote -v
+          git branch --all
+          git config --list
+          git checkout master
+          git merge --ff-only upstream/master
+          git push origin master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
