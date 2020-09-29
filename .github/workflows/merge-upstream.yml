@@ -20,7 +20,7 @@ jobs:
           git remote -v
           git branch --all
           git config --list
-          git checkout --track origin/master
+          git checkout master
           git merge upstream/master
           git push origin master
         env:
