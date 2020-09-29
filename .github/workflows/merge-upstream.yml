@@ -36,7 +36,7 @@ jobs:
           git branch --all
           git config --list
           git checkout --track origin/travis-build
-          git merge --no-ff origin/master
+          git merge --strategy-option theirs --no-ff origin/master
           git push origin travis-build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
