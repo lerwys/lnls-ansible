@@ -1,8 +1,8 @@
 name: Merge Upstream
 on:
   schedule:
-    # scheduled for every 10 minutes
-    - cron: '*/10 * * * *'
+    # scheduled for every night at midnight
+    - cron: '0 0 * * *'
 
 jobs:
   merge-upstream:
@@ -20,7 +20,7 @@ jobs:
           git remote -v
           git branch --all
           git config --list
-          git checkout master
+          git checkout --track origin/master
           git merge --ff-only upstream/master
           git push origin master
         env:
@@ -30,7 +30,7 @@ jobs:
         run: |
           git branch --all
           git config --list
-          git checkout travis-build
+          git checkout --track origin/travis-build
           git merge --no-ff origin/master
           git push origin travis-build
         env:
