@@ -1,8 +1,8 @@
 name: Merge Upstream
 on:
   schedule:
-    # scheduled for every 10 minutes
-    - cron: '*/10 * * * *'
+    # scheduled for every night at midnight
+    - cron: '0 0 * * *'
 
 jobs:
   merge-upstream:
